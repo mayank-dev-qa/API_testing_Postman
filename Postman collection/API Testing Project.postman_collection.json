@@ -1,0 +1,680 @@
+{
+	"info": {
+		"_postman_id": "bcecca27-e45e-4e6b-8f37-162be51a2dd8",
+		"name": "API Testing Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46281566",
+		"_collection_link": "https://mayankagrawal-43114.postman.co/workspace/791966e0-db64-41dd-819c-37738101eff0/collection/46281566-bcecca27-e45e-4e6b-8f37-162be51a2dd8?action=share&source=collection_link&creator=46281566"
+	},
+	"item": [
+		{
+			"name": "https://reqres.in/api/users/2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let res= pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"ID is 2\", function(){\r",
+							"    pm.expect(res.data.id).to.eql(2);\r",
+							"}); // Fixed missing closing parenthesis\r",
+							"\r",
+							"pm.test(\"First name is Janet\", function(){\r",
+							"    pm.expect(res.data.first_name).to.eql(\"Janet\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Last name is Weaver\", function(){\r",
+							"    pm.expect(res.data.last_name).to.eql(\"Weaver\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Email is janet.weaver@reqres.in\", function(){\r",
+							"    pm.expect(res.data.email).to.eql(\"janet.weaver@reqres.in\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://reqres.in/api/users/1000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 404\",function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://reqres.in/api/users/1000",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://reqres.in/api/users?page=2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response= pm.response.json();\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\",function(){\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"page number is 2\",function(){\r",
+							"    pm.expect(response.page).to.eql(2);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"total pages are 2\",function(){\r",
+							"    pm.expect(response.total_pages).to.eql(2);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Per page users are 6\",function(){\r",
+							"    pm.expect(response.per_page).to.eql(6);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Each user has email id:\",function(){\r",
+							"   response.data.forEach(function(user){\r",
+							"    pm.expect(user.email).to.include(\"@\");\r",
+							"   });\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Each user has first_name\",function(){\r",
+							"   response.data.forEach(function(user){\r",
+							"    pm.expect(user.first_name).to.not.be.empty;\r",
+							"   });\r",
+							"});\r",
+							"\r",
+							"pm.test(\"each user has last_name\",function(){\r",
+							"    response.data.forEach(function(user){\r",
+							"        pm.expect(user.last_name).to.not.be.empty;\r",
+							"    });\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://reqres.in/api/users/{{randomUserId}}",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var randomId = Math.floor(Math.random() * 10) + 1;\r",
+							"pm.environment.set(\"randomUserId\", randomId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200 or 404\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://reqres.in/api/users/{{randomUserId}}",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{randomUserId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://reqres.in/api/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							" pm.test(\"Status code is 201\",function(){\r",
+							" pm.response.to.have.status(201);\r",
+							" });\r",
+							"\r",
+							" let res= pm.response.json();\r",
+							"\r",
+							" pm.test(\"Name is correct\",function(){\r",
+							"pm.expect(res.name).to.eql(\"Mayank\");\r",
+							" });\r",
+							"\r",
+							" pm.test(\"Job is present\",function(){\r",
+							"    pm.expect(res.job).to.eql(\"QA Tester\");\r",
+							" });\r",
+							"\r",
+							" pm.test(\"ID is present\",function(){\r",
+							"    pm.expect(res.id).to.not.be.empty;\r",
+							" });\r",
+							"\r",
+							"pm.test(\"ID column is present\",function(){\r",
+							"pm.expect(res).to.have.property(\"id\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-mock-response-name",
+						"value": "Mayank",
+						"type": "text"
+					},
+					{
+						"key": "job",
+						"value": "QA Tester",
+						"type": "text"
+					},
+					{
+						"key": "name",
+						"value": "Mayank",
+						"type": "text"
+					},
+					{
+						"key": "job",
+						"value": "QA Tester",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Mayank\",\r\n  \"job\": \"QA Tester\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://reqres.in/api/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 201\",function(){\r",
+							"pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"let res= pm.response.json();\r",
+							"\r",
+							"pm.test(\"Should NOT accept empty name\", function () {\r",
+							"    pm.expect(res.name).to.not.eql(\"\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Job should not be undefined\", function () {\r",
+							"    pm.expect(res.job).to.not.be.undefined;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://reqres.in/api/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is \" + data.expected_status, function () {\r",
+							"    pm.expect(pm.response.code).to.eql(data.expected_status);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"email\": \"\",\r\n    \"password\": \"123456\",\r\n    \"expected_status\": 400\r\n  },\r\n  {\r\n    \"email\": \"test@example.com\",\r\n    \"password\": \"\",\r\n    \"expected_status\": 400\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://reqres.in/api/users/2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"let res = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Name and job fields are present\",function(){\r",
+							"    pm.expect(res).to.have.property(\"name\");\r",
+							"    pm.expect(res).to.have.property(\"job\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"updated key feild is present\",function(){\r",
+							"   pm.expect(res).to.have.property(\"updatedAt\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"name and Job feild is not empty\",function(){\r",
+							"    pm.expect(res.name).to.not.be.empty;\r",
+							"    pm.expect(res.job).to.not.be.empty;\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Returns the response code as 200 or 404 (depends on API),\",function(){\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"name\": \"Mayank\",\r\n    \"job\": \"QA TESTER\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://reqres.in/api/users/2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"statuscode is 200\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response time is below 1000ms\",function(){\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"})\r",
+							"\r",
+							"let res = pm.response.json();\r",
+							"\r",
+							"pm.test(\"The first_name feild is present:\",function(){\r",
+							"    pm.expect(res).to.have.property(\"first_name\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"first_name feild value is not empty:\", function (){\r",
+							"    pm.expect(res.first_name).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The updatedAt feild is present:\",function(){\r",
+							"    pm.expect(res).to.have.property(\"updatedAt\");\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"first_name\": \"Mayank\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://reqres.in/api/users/2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is empty\",function(){\r",
+							"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
