@@ -21,9 +21,11 @@ pipeline
         }
 
         stage("Run newman test"){
+                 steps{
             
             bat 'newman run "Postman collection/API Testing Project.postman_collection.json" -r cli,html --reporter-html-export result.html'
-        }
+                 }
+                 }
         stage("Archive artifacts"){
 
            steps{
