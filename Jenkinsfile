@@ -16,9 +16,14 @@ pipeline
         stage("Run newman test"){
                  steps{
             
-            bat 'newman run "Postman collection/API Testing Project.postman_collection.json" -r cli,html --reporter-html-export result.html ;exit 0'
+            script {
+    def result = bat(script:'newman run "Postman collection/API Testing Project.postman_collection.json" -r cli,html --reporter-html-export result.html', returnStatus: true)
+       if (result != 0) {
+        echo "Newman tests failed"
+    }
+            }
                  }
-                 }
+                 
         stage("Archive artifacts"){
 
            steps{
