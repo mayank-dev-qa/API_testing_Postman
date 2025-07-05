@@ -33,14 +33,14 @@ pipeline
         stage ("publish html report")
         {
             steps{
-                  publishHTML (target: [
-                        reportDir:'.',
-                        reportFiles:'report.html',
-                        reportName: 'Newman HTML Reprt'
-                        allowMissing: false,
+                 publishHTML (target: [   ✅ // ✅ Add parentheses
+                         allowMissing: false,
                         alwaysLinkToLastBuild: true,
-                        keepAll: true
-                  ])
+                        keepAll: true,
+                       reportDir: '.',
+                       reportFiles: 'result.html',
+                      reportName: 'Newman HTML Report'
+                     ])
             }
         }
 
