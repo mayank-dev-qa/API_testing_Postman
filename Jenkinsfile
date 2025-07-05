@@ -30,20 +30,18 @@ pipeline
             archiveArtifacts artifacts: 'result.html', fingerprint: true
            }
         }
-        stage ("publish html report")
-        {
-            steps{
-                 publishHTML (target: [   ✅ // ✅ Add parentheses
-                         allowMissing: false,
-                        alwaysLinkToLastBuild: true,
-                        keepAll: true,
-                       reportDir: '.',
-                       reportFiles: 'result.html',
-                      reportName: 'Newman HTML Report'
-                     ])
-            }
-        }
-
+        stage("Publish HTML Report") {
+    steps {
+        publishHTML(target: [
+            allowMissing: false,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: '.',
+            reportFiles: 'result.html',
+            reportName: 'Newman HTML Report'
+        ])
+    }
+}
         post {
             always{
                   echo "Pipeline execution completed successfully!!!!"
