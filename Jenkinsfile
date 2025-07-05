@@ -5,13 +5,6 @@ pipeline
  agent any
  
  stages {
-        
-        stage("clone git repository"){
-                 steps{
-
-            git url: "https://github.com/mayank-dev-qa/API_testing_Postman"
-                 }
-        }
 
         stage("Install Newman"){
                  steps{
