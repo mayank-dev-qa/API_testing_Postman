@@ -44,12 +44,11 @@ pipeline
         ])
     }
 }
-        post {
+ }
+    post {
             always{
                   echo "Pipeline execution completed successfully!!!!"
             }
-        }
-
- }
+        }                
 
 }
