@@ -33,7 +33,7 @@ pipeline
         stage ("publish html report")
         {
             steps{
-                  publishHTML target : [
+                  publishHTML target: [
                         reportDir:'.',
                         reportFiles:'report.html',
                         reportName: 'Newman HTML Reprt'
