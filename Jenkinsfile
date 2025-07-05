@@ -7,14 +7,17 @@ pipeline
  stages {
         
         stage("clone git repository"){
+                 steps{
 
             git url: "https://github.com/mayank-dev-qa/API_testing_Postman"
-
+                 }
         }
 
         stage("Install Newman"){
+                 steps{
 
             bat 'npm install -g newman newman-reporter-html'
+                 }
         }
 
         stage("Run newman test"){
@@ -34,6 +37,9 @@ pipeline
                         reportDir:'.',
                         reportFiles:'report.html',
                         reportName: 'Newman HTML Reprt'
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
                   ])
             }
         }
