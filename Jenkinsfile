@@ -24,7 +24,7 @@ pipeline
         stage("Archive artifacts"){
 
            steps{
-            archiveArtifacts : 'result.html', fingerprint: true
+            archiveArtifacts artifacts: 'result.html', fingerprint: true
            }
         }
         stage ("publish html report")
